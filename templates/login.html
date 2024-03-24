@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="hero-image">
+    <div class="hero-text">
+        <!-- form -->
+        <form action="" method="POST" class="hero-text2 mt-5 mb-5 w-25 mx-auto text-center">
+            {% csrf_token %}
+            <h2>Log in</h2>
+
+            <div class="mb-3">
+                <!-- Use dynamic IDs for the input fields -->
+                <input type="text" name='username' id="username_{{ unique_id }}" class="form-control form-control-lg" placeholder="username">
+                <input type="password" name="password" id="password_{{ unique_id }}" class="form-control form-control-lg mt-4" placeholder='Password'>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-outline-dark btn-light" type="submit">
+                    <a class="text-decoration-none text-dark" href="{% url 'login' %}">Log in</a>
+                </button>
+            </div>
+
+            <p class="p-grey mt-4">
+                Don't have an account? <a href="{% url "register" %}">Create one</a><br><br>
+            </p>
+        </form>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    });
+</script>
+{% endblock content %}

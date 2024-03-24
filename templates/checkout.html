@@ -1,0 +1,164 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<div class="row">
+  <div class="col-lg-6">
+    <div class="box-element" id="form-wrapper">
+      <form id="form">
+ 
+
+        <div id="shipping-info">
+          <hr />
+          <p>Shipping Information:</p>
+          <hr />
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="address"
+              placeholder="Address.."
+            />
+          </div>
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="city"
+              placeholder="City.."
+            />
+          </div>
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="state"
+              placeholder="State.."
+            />
+          </div>
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="zipcode"
+              placeholder="Zip code.."
+            />
+          </div>
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="country"
+              placeholder="Zip code.."
+            />
+          </div>
+        </div>
+
+        <hr />
+        <input
+          id="form-button"
+          class="btn btn-success"
+          type="submit"
+          value="Continue"
+          style="display: none"
+        />
+        <!-- Hide the form submit button by default -->
+      </form>
+    </div>
+
+    <br />
+    <div class="box-element" id="payment-info">
+      <small>Paypal Options</small>
+      <button id="make-payment" style="display: block">Make payment</button>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="box-element">
+      <a class="btn btn-outline-dark" href="{% url 'cart' %}"
+        >&#x2190; Back to Cart</a
+      >
+      <hr />
+      <h3>Order Summary</h3>
+      <hr />
+      {% for item in items %}
+      <div class="cart-row">
+        <div style="flex: 2">
+          <img class="row-image" src="{{item.product.imageURL}}" />
+        </div>
+        <div style="flex: 2"><p>{{item.product.name}}</p></div>
+        <div style="flex: 1"><p>${{item.product.price|floatformat:2}}</p></div>
+        <div style="flex: 1">
+          <p>x{{item.quantity}}</p>
+          <!-- Add data-user attribute with value "{{ request.user }}" -->
+          <img
+            data-product="{{item.product.id}}"
+            data-action="add"
+            class="chg-quantity update-cart"
+            src="{% static  'images/arrow-up.png' %}"
+          />
+
+          <img
+            data-product="{{item.product.id}}"
+            data-action="remove"
+            class="chg-quantity update-cart"
+            src="{% static  'images/arrow-down.png' %}"
+          />
+        </div>
+      </div>
+      {% endfor %}
+
+      <h5>Items: {{order.get_cart_items}}</h5>
+      <h5>Total: ${{order.get_cart_total|floatformat:2}}</h5>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    let form = document.getElementById('form');
+    let makePaymentButton = document.getElementById('make-payment');
+    let userStatus = '{{ user|escapejs }}'; // Get the user's status from the template variable
+  
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (userStatus === 'AnonymousUser') {
+        // If user is not logged in, redirect to login page
+        window.location.href = '{% url "login" %}?next={{ request.path }}';
+      } else {
+        console.log('Form Submitted...');
+        document.getElementById('form-button').style.display = 'none';
+        displaySuccessMessage(); // Call function to display success message
+        setTimeout(redirectToMainPage, 3000); // Redirect after 3 seconds (3000 milliseconds)
+      }
+    });
+  
+    makePaymentButton.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default form submission
+      submitFormData();
+    });
+  
+    function submitFormData() {
+      // Your code to handle form submission or any other functionality
+      console.log('Form data submitted.');
+      // You can add more logic here as needed
+      displaySuccessMessage(); // Call function to display success message
+      clearCart(); // Clear the cart
+      setTimeout(redirectToMainPage, 2000);
+  }
+    
+
+    function displaySuccessMessage() {
+      // Display a success message to the user
+      let successMessage = document.createElement('div');
+      successMessage.textContent = 'Order successful!';
+      successMessage.classList.add('message-container', 'success');
+      document.body.appendChild(successMessage);
+    }
+  
+    function redirectToMainPage() {
+      // Redirect the user to the main page
+      window.location.href = '{% url "store" %}';
+    }
+  });
+  
+</script>
+
+
+{% endblock content %}

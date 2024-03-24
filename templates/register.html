@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="hero-image">
+    <div class="container p-5">
+        <form action="" method="POST" enctype="multipart/form-data" class="w-50 m-auto border border-dark text-dark p-3">
+            <h1 class="text-black text-center">Register</h1>
+            <hr class="text-black"> 
+            {% csrf_token %}
+ 
+            <label>Name</label>
+            <input type="text" placeholder="Name" name="name" class="form-control">
+
+            <label>Last name</label>
+            <input type="text" placeholder="Last name" name="last_name" class="form-control">
+
+            <label>Email</label>
+            <input type="email" placeholder="Email" name="email" class="form-control">
+
+            <label>Phone number</label>
+            <input type="tel" name="phone_number" placeholder="0555 555 55 55" class="form-control">
+
+            <label>Date of birth</label>
+            <input type="date" name="birthday" class="form-control">
+
+            <label>Password</label>
+            <input type="password" name="password1" class="form-control" placeholder='Password'>
+
+            <label>Password</label>
+            <input type="password" name="password2" class="form-control" placeholder='Enter your password again'>
+
+            <div class="text-center">
+                <input type="submit" value="Register" class="btn btn-lg btn-outline-dark btn-light mt-3">
+                <a class="btn btn-lg btn-outline-dark btn-light mt-3" href="/">Go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
