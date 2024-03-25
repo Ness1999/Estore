@@ -15,5 +15,5 @@ class Account(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE, null = True)
 
     def __str__(self):
-        return self.isim
+        return self.username
     
