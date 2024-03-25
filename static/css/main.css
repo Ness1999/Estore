@@ -1,3 +1,4 @@
+
 body {
     background-color: hsl(0, 0%, 69%);
  
@@ -8,19 +9,26 @@ body {
 
 }
 
+.navbar {
+    position: sticky;
+    top: 0; /* Stick the navbar to the top of the viewport */
+    background-color: #2a2a2a;
+    height: 50px;
+    z-index: 1000; /* Ensure the navbar appears above other content */
+}
+
+
+
 .content {
-    flex: 1 0 auto;
     padding-top: 60px; /* Adjust the padding to accommodate the navbar */
     padding-bottom: 60px; /* Adjust the padding to accommodate the footer */
 }
+
 h1,h2,h3,h4,h5,h6{
 	color:hsl(0, 0%, 3%);
 }
 
-#navbar {
-    flex: 0 0 auto;
-    border-bottom: 1px solid #000;
-}
+
 
 .card-img-top {
     height: 250px; /* Adjust this value as needed */
@@ -41,7 +49,6 @@ h1,h2,h3,h4,h5,h6{
     padding: 10px 0;
     text-align: center;
 }
-
 .card-footer {
     position: relative;
     overflow: hidden;
@@ -139,7 +146,7 @@ h1,h2,h3,h4,h5,h6{
   }
 
 .carousel {
-	margin-top: -25px;
+	margin-top: -24px;
 	margin-bottom: 20px;
 }
 
@@ -168,24 +175,9 @@ h1,h2,h3,h4,h5,h6{
 	display: none!important;
 }
 
-.message-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f8d7da; /* Red for error, #d4edda for success, #cce5ff for info */
-    color: #721c24; /* Text color */
-    padding: 10px 0;
-    text-align: center;
-    font-size: 14px;
-    border-bottom: 1px solid #e9ecef;
-    z-index: 1000; /* Ensure message container appears above other content */
+#make-payment {
+    font-size: 16px;
+    font-weight: 500; /* Adjust the font size as needed */
+    padding: 7px 10px;
+    margin-top: 2px; /* Adjust padding top and bottom to reduce button height */
 }
-
-.navbar {
-    position: relative; /* Adjust positioning of navbar */
-    background-color: #2a2a2a; /* Background color for the navbar */
-    height: 50px; /* Adjust height as needed */
-    border-bottom: 1px solid #e9ecef; /* Bottom border */
-}
-

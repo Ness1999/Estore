@@ -1,4 +1,6 @@
-{% extends 'main.html' %} {% load static %} {% block content %}
+{% extends 'main.html' %} {% load static %}
+{% include "includes/_navbar.html" %}
+{% block content %}
 <div class="row">
   <div class="col-lg-6">
     <div class="box-element" id="form-wrapper">
@@ -7,7 +9,7 @@
 
         <div id="shipping-info">
           <hr />
-          <p>Shipping Information:</p>
+          <p><strong>Shipping Information:</strong></p>
           <hr />
           <div class="form-field">
             <input
@@ -65,8 +67,8 @@
 
     <br />
     <div class="box-element" id="payment-info">
-      <small>Paypal Options</small>
-      <button id="make-payment" style="display: block">Make payment</button>
+      <strong>Payment Options</strong>
+      <button id="make-payment" style="display: block" class='btn btn-lg btn-outline-dark btn-light'>Make payment</button>
     </div>
   </div>
   <div class="col-lg-6">
@@ -162,3 +164,6 @@
 
 
 {% endblock content %}
+
+{% include "includes/_footer.html" %}
+

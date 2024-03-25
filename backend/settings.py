@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ti!$_ioi=*mr(49_2afv@#v%hws+=%6z4e4=^(j+ems^44za-a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nesma.pythonanywhere.com','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -123,6 +123,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
+
+STATIC_ROOT= os.path.join(BASE_DIR/'staticfiles')
 
 MEDIA_URL='/images/'
 
